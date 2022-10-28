@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import seamlesslyS3.pages.LoginPage;
+import seamlesslyS3.utility.ConfigurationReader;
 
 import static seamlesslyS3.utility.Driver.driver;
 
@@ -13,7 +14,7 @@ public class LoginValidSteps {
 
     @Given("User goes to Seamlessly login page")
     public void user_goes_to_seamlessly_login_page() {
-        driver().get("https://qa.seamlessly.net/index.php/login");
+        driver().get(ConfigurationReader.get("web.url"));
     }
     @When("User types username as {string}")
     public void user_types_username_as(String username) {
