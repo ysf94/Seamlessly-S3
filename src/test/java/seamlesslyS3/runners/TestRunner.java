@@ -13,8 +13,8 @@ import org.junit.runner.RunWith;
         features = "src/test/resources/features",
         glue = "seamlesslyS3/steps",
         stepNotifications = true,
-        dryRun = false,
-        tags = "@SEAMLES-2402"
+        dryRun =false,
+        tags = "@SEAMLES-2418"
 
 )
 public class TestRunner {

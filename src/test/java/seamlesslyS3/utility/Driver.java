@@ -8,11 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
-
-import java.net.URL;
 
 import static seamlesslyS3.utility.BrowserUtils.waitFor;
 
@@ -34,20 +30,20 @@ public class Driver {
 
             switch (browser) {
                 case"remote-chrome":
-                    try {
-                        //assign your grid server address
-                        String gridAddress = "54.87.134.179";
-                        URL url = new URL("http://"+gridAddress + ":4444/wd/hub");
-                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                        desiredCapabilities.setBrowserName("chrome");
-                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        //assign your grid server address
+//                        String gridAddress = "54.87.134.179";
+//                        URL url = new URL("http://"+gridAddress + ":4444/wd/hub");
+//                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+//                        desiredCapabilities.setBrowserName("chrome");
+//                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions options = new ChromeOptions();
-                    options.addArguments("--incognito");
+                   // options.addArguments("--incognito");
                     WebDriver chromeDriver = new ChromeDriver(options);
                     driverPool.set(chromeDriver);
                     break;

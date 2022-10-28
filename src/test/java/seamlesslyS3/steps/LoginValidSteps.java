@@ -7,7 +7,7 @@ import seamlesslyS3.pages.LoginPage;
 
 import static seamlesslyS3.utility.Driver.driver;
 
-public class LoginSteps {
+public class LoginValidSteps {
 
     LoginPage loginPage = new LoginPage();
 
@@ -25,7 +25,7 @@ public class LoginSteps {
     }
     @When("User clicks {string}")
     public void user_clicks(String buttonType) {
-        loginPage.userClicks(buttonType);
+        loginPage.userClicksBtn(buttonType);
     }
     @Then("Verify that User lands on user dashboard")
     public void verify_that_user_lands_on_user_dashboard() {
