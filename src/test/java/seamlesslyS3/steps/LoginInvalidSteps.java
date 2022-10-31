@@ -10,7 +10,7 @@ public class LoginInvalidSteps {
 
     @When("User clicks {string} {string}")
     public void user_clicks(String clickType,String messageText) {
-        loginPage.userClicksBtn(clickType,messageText);
+        loginPage.userClickBtn(clickType,messageText);
     }
 
 
