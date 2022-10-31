@@ -6,8 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import static seamlesslyS3.utility.BrowserUtils.sleep;
-import static seamlesslyS3.utility.BrowserUtils.waitForVisibility;
+import static seamlesslyS3.utility.BrowserUtils.*;
 import static seamlesslyS3.utility.Driver.driver;
 
 public class LoginPage extends BasePage {
@@ -34,6 +33,9 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//p[@class='warning throttledMsg']")
     private WebElement warningMessage;
 
+    @FindBy(xpath = "//a[@Class='toggle-password']")
+    private WebElement passwordVisibilityBtn;
+
 
     public void typeUsername(String username) {
         inputUsername.sendKeys(username);
@@ -54,7 +56,7 @@ public class LoginPage extends BasePage {
         }
     }
 
-    public void userClicksBtn(String clickType,String messageText) {
+    public void userClickBtn(String clickType, String messageText) {
         boolean isDisableWarningMessage = warningMessage.isDisplayed();
         if (clickType.equalsIgnoreCase("ENTER")) {
             loginBtn.sendKeys(Keys.ENTER);
@@ -89,6 +91,50 @@ public class LoginPage extends BasePage {
             }
         }
         sleep(3);
+    }
+
+    public void isPasswordViewDot(){
+        String actualViewPassword = inputPassword.getAttribute("type");
+        String expectedViewPasswordDot = "password";
+
+        Assert.assertEquals(actualViewPassword,expectedViewPasswordDot);
+    }
+
+    public void isPasswordViewText(){
+        String actualViewPassword = inputPassword.getAttribute("type");
+        String expectedViewPasswordText = "text";
+
+        Assert.assertEquals(actualViewPassword,expectedViewPasswordText);
+    }
+
+    public void clickPasswordVisibilityBtn(){
+        sleep(2);
+        waitForClickability(passwordVisibilityBtn,10).click();
+        sleep(2);
+    }
+
+    public void verifyClickPasswordVisibilityBtn(){
+        sleep(2);
+        waitForClickability(passwordVisibilityBtn,10).click();
+        sleep(2);
+
+        String actualViewPassword = inputPassword.getAttribute("type");
+        String expectedViewPasswordText = "text";
+
+        if (actualViewPassword.equalsIgnoreCase(expectedViewPasswordText)) {
+            Assert.assertEquals(actualViewPassword, expectedViewPasswordText);
+        }else {
+            Assert.assertFalse(actualViewPassword.contains(expectedViewPasswordText));
+        }
+        passwordVisibilityBtn.click();
+    }
+
+    public void isDisplayedLoginPage(){
+       Assert.assertTrue(waitForClickability(inputUsername,10).isDisplayed());
+       Assert.assertTrue(waitForClickability(inputPassword,10).isDisplayed());
+
+
+
     }
 
 }
