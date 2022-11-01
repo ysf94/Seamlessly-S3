@@ -8,11 +8,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
-
-import java.net.URL;
 
 import static seamlesslyS3.utility.BrowserUtils.waitFor;
 
@@ -46,16 +42,16 @@ public class Driver {
                     driverPool.set(new ChromeDriver(new ChromeOptions().setHeadless(true)));
                     break;
                 case"remote-chrome":
-                    try {
-                        //assign your grid server address
-                        String gridAddress = "3.208.8.137";
-                        URL url = new URL("http://"+gridAddress + ":4444/wd/hub");
-                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
-                        desiredCapabilities.setBrowserName("chrome");
-                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
-                    }catch (Exception e){
-                        e.printStackTrace();
-                    }
+//                    try {
+//                        //assign your grid server address
+//                        String gridAddress = "3.208.8.137";
+//                        URL url = new URL("http://"+gridAddress + ":4444/wd/hub");
+//                        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+//                        desiredCapabilities.setBrowserName("chrome");
+//                        driverPool.set(new RemoteWebDriver(url, desiredCapabilities));
+//                    }catch (Exception e){
+//                        e.printStackTrace();
+//                    }
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     driverPool.set(new FirefoxDriver());

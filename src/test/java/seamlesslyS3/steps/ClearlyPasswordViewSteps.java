@@ -5,7 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import seamlesslyS3.pages.LoginPage;
 
-public class clearlyPasswordView {
+public class ClearlyPasswordViewSteps {
 
     LoginPage loginPage = new LoginPage();
 

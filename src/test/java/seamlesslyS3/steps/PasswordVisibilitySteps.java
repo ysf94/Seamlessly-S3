@@ -1,10 +1,9 @@
 package seamlesslyS3.steps;
 
-import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
 import seamlesslyS3.pages.LoginPage;
 
-public class PasswordVisibility {
+public class PasswordVisibilitySteps {
 
     LoginPage loginPage = new LoginPage();
 
