@@ -57,7 +57,14 @@ public class LoginPage extends BasePage {
     }
 
     public void userClickBtn(String clickType, String messageText) {
-        boolean isDisableWarningMessage = warningMessage.isDisplayed();
+        boolean isDisableWarningMessage = false;
+
+        try {
+            isDisableWarningMessage = warningMessage.isDisplayed();
+        }catch (Exception e ){
+            e.printStackTrace();
+        }
+
         if (clickType.equalsIgnoreCase("ENTER")) {
             loginBtn.sendKeys(Keys.ENTER);
         } else if (clickType.equalsIgnoreCase("LoginBtn")) {
@@ -66,7 +73,7 @@ public class LoginPage extends BasePage {
             loginBtn.click();
         }
 
-        if (isDisableWarningMessage & messageText.contains("Wrong username or password")){
+        if (isDisableWarningMessage & messageText.contains("Wrong username or password")) {
             sleep(2);
             driver().navigate().back();
         }
@@ -77,13 +84,16 @@ public class LoginPage extends BasePage {
     }
 
     public void verifyErrorOrAlertMessage(String messageText) {
-
-        if (messageText.contains("Wrong username or password.")) {
-
+        try {
+            if (messageText.contains("Wrong username or password.")) {
                 sleep(2);
                 Assert.assertTrue(waitForVisibility(errorMessageText, 3).getText().contains(messageText));
             }
-         else if (messageText.contains("Please fill out this field")) {
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        if (messageText.contains("Please fill out this field")) {
             if (waitForVisibility(inputUsername, 1).getAttribute("validationMessage").contains(messageText)) {
                 Assert.assertTrue(inputUsername.getAttribute("validationMessage").contains(messageText));
             } else if (waitForVisibility(inputPassword, 1).getAttribute("validationMessage").contains(messageText)) {
@@ -93,29 +103,29 @@ public class LoginPage extends BasePage {
         sleep(3);
     }
 
-    public void isPasswordViewDot(){
+    public void isPasswordViewDot() {
         String actualViewPassword = inputPassword.getAttribute("type");
         String expectedViewPasswordDot = "password";
 
-        Assert.assertEquals(actualViewPassword,expectedViewPasswordDot);
+        Assert.assertEquals(actualViewPassword, expectedViewPasswordDot);
     }
 
-    public void isPasswordViewText(){
+    public void isPasswordViewText() {
         String actualViewPassword = inputPassword.getAttribute("type");
         String expectedViewPasswordText = "text";
 
-        Assert.assertEquals(actualViewPassword,expectedViewPasswordText);
+        Assert.assertEquals(actualViewPassword, expectedViewPasswordText);
     }
 
-    public void clickPasswordVisibilityBtn(){
+    public void clickPasswordVisibilityBtn() {
         sleep(2);
-        waitForClickability(passwordVisibilityBtn,10).click();
+        waitForClickability(passwordVisibilityBtn, 10).click();
         sleep(2);
     }
 
-    public void verifyClickPasswordVisibilityBtn(){
+    public void verifyClickPasswordVisibilityBtn() {
         sleep(2);
-        waitForClickability(passwordVisibilityBtn,10).click();
+        waitForClickability(passwordVisibilityBtn, 10).click();
         sleep(2);
 
         String actualViewPassword = inputPassword.getAttribute("type");
@@ -123,19 +133,43 @@ public class LoginPage extends BasePage {
 
         if (actualViewPassword.equalsIgnoreCase(expectedViewPasswordText)) {
             Assert.assertEquals(actualViewPassword, expectedViewPasswordText);
-        }else {
+        } else {
             Assert.assertFalse(actualViewPassword.contains(expectedViewPasswordText));
         }
         passwordVisibilityBtn.click();
     }
 
-    public void isDisplayedLoginPage(){
-       Assert.assertTrue(waitForClickability(inputUsername,10).isDisplayed());
-       Assert.assertTrue(waitForClickability(inputPassword,10).isDisplayed());
-
-
-
+    public void isDisplayedLoginPage() {
+        Assert.assertTrue(waitForClickability(inputUsername, 10).isDisplayed());
+        Assert.assertTrue(waitForClickability(inputPassword, 10).isDisplayed());
     }
+
+    public void clearUsernameBoxPlaceholder(){
+        waitForClickability(inputUsername,10).clear();
+    }
+
+    public void clearPasswordBoxPlaceholder(){
+        waitForClickability(inputPassword,10).clear();
+    }
+
+    public void isEmptyUsernameBox(){
+        Assert.assertTrue(isValueEmpty(inputUsername));
+    }
+
+    public void verifyUsernamePlaceholder(){
+        boolean usernamePlaceholderİsDisplayed = inputUsername.getAttribute("placeholder").contains("Username");
+        Assert.assertTrue(usernamePlaceholderİsDisplayed);
+    }
+
+    public void isEmptyPasswordBox(){
+        Assert.assertTrue(isValueEmpty(inputPassword));
+    }
+
+    public void verifyPasswordPlaceholder(){
+        boolean passwordPlaceholderİsDisplayed = inputPassword.getAttribute("placeholder").contains("Password");
+        Assert.assertTrue(passwordPlaceholderİsDisplayed);
+    }
+
 
 }
 

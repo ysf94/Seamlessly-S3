@@ -18,7 +18,7 @@ public class ResetPasswordPage extends BasePage{
     @FindBy(xpath = "//a[normalize-space(text()) = 'Back to login']")
     protected WebElement backToLoginLinkText;
 
-    @FindBy(xpath = "//p[@class='update']")
+    @FindBy(xpath = "//div[@id='reset-password-wrapper']/following-sibling::p")
     protected WebElement warningMessage;
 
 
@@ -41,8 +41,8 @@ public class ResetPasswordPage extends BasePage{
     }
 
     public void isDisplayedResetMessage(){
-        waitFor(5);
-        Assert.assertTrue(warningMessage.isDisplayed());
+        boolean resetMessage = waitForClickability(warningMessage,30).isDisplayed();
+        Assert.assertTrue(resetMessage);
     }
 
     public void clickBackToLoginTextLink(){

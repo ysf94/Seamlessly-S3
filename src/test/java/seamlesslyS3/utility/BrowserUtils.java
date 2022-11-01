@@ -205,4 +205,9 @@ public class BrowserUtils {
     public static boolean isSameElementXpathCss(String xpath, String css) {
         return (boolean) ((JavascriptExecutor) driver()).executeScript("return document.evaluate(arguments[0], document, null, XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue.matches(arguments[1])", xpath, css);
     }
+
+    public static boolean isValueEmpty(WebElement element){
+        boolean isValueEmptyElement= element.getAttribute("value").isEmpty();
+        return isValueEmptyElement;
+    }
 }

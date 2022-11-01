@@ -1,10 +1,12 @@
 @SEAMLES-2378
 Feature: Seamlessly Login functionality
 
+  Background:
+    Given User goes to Seamlessly login page
+
   @SEAMLES-2402
   Scenario Outline: User should be able to login successfully with valid credentials
 
-    Given User goes to Seamlessly login page
     When User types username as "<username>"
     And User enters password as "<password>"
     And User clicks "<ButtonType>"
@@ -17,7 +19,7 @@ Feature: Seamlessly Login functionality
 
   @SEAMLES-2418
   Scenario Outline: Verify that User can not login with any invalid credentials
-    Given User goes to Seamlessly login page
+
     When User types username as "<username>"
     And User enters password as "<password>"
     And User clicks "<ButtonType>" "<errorOrAlertMessage>"
@@ -33,7 +35,6 @@ Feature: Seamlessly Login functionality
   @SEAMLES-2431
   Scenario: Verify that user can see the password in a form of dots by default(when empty and filled )
 
-    Given User goes to Seamlessly login page
     When Verify that the default visibility of the password input box is dot
     And User clicks password visibility button
     And Verify that visibility of the password input box is now text
@@ -50,7 +51,6 @@ Feature: Seamlessly Login functionality
   @SEAMLES-2432
   Scenario: Verify that user can see the password explicitly if needed
 
-    Given User goes to Seamlessly login page
     When Verify that the default visibility of the password input box is dot
     And User enters password as "anyPassword123"
     And Verify that user clicks password visibility button
@@ -62,7 +62,6 @@ Feature: Seamlessly Login functionality
   @SEAMLES-2433
   Scenario: Forgot password? Verify that the link can be used by the user
 
-    Given User goes to Seamlessly login page
     When Forgot password? Verify visibility.
     And User clicks on Forgot password? link text
     And Verify that user goes to the reset password page
@@ -71,3 +70,14 @@ Feature: Seamlessly Login functionality
     And Verify that user sees reset message
     And User clicks Back to login link text
     Then Verify that user goes back to the login page
+
+
+  @SEAMLES-2435
+  Scenario: User can see valid placeholders on Username and Password fields
+
+    When User clears in username box
+    And Verify that username box is empty
+    And Verify that see placeholder on username box
+    And User clears in password box
+    And Verify that password box is empty
+    Then Verify that see placeholder on password box
