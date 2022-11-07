@@ -14,7 +14,7 @@ import org.junit.runner.RunWith;
         glue = "seamlesslyS3/steps",
         stepNotifications = true,
         dryRun =false,
-        tags = "@SEAMLES-2378"
+        tags = "@Wip"
 
 )
 public class TestRunner {
