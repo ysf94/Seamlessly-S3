@@ -48,6 +48,4 @@ public class ResetPasswordPage extends BasePage{
     public void clickBackToLoginTextLink(){
         waitForClickability(backToLoginLinkText,10).click();
     }
-
-
 }
