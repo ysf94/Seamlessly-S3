@@ -104,13 +104,13 @@
                     <parallel>methods</parallel>
 
                     <!--                    <useUnlimitedThreads>true</useUnlimitedThreads>-->
-                    <threadCount>8</threadCount>
+                    <threadCount>4</threadCount>
                     <perCoreThreadCount>true</perCoreThreadCount>
                     <testFailureIgnore>false</testFailureIgnore>
                     <includes>
                         <include>**/TestRunner*.java</include>
                     </includes>
-                    <!--                    <goal>test</goal>-->
+                    <goal>test</goal>
                     <!--                    <parallelMavenExecution>true</parallelMavenExecution>-->
                 </configuration>
             </plugin>
